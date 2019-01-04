@@ -63,7 +63,7 @@ describe('ixSpider input bookname should renturn book number', function() {
                 bookName: '大道朝天'
             },
         }).then( data => {
-            chai.expect(data).to.an.instanceof(Array);
+            chai.expect((<any>data).bookList).to.an.instanceof(Array);
             done();
         })
     });
@@ -76,7 +76,7 @@ describe('ixSpider input bookname should renturn book number', function() {
                 bookHref: 'p2.html',
             },
         }).then(data => {
-            chai.expect(data).to.be.match(/[/s]*.*[/s]*/);
+            chai.expect((<any>data).bookData).to.be.match(/[/s]*.*[/s]*/);
             done();
         })
     });
