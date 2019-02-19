@@ -51,16 +51,16 @@ describe('ixSpider input bookname should renturn book number', function() {
                 bookName: '大道朝天'
             },
         }).then( data => {
-            chai.expect(data).to.be.equal('/d/169/169208/#txt_down');
+            chai.expect(data[0].bookNumber).to.be.equal('/d/169/169208/');
             done();
         })
     });
 
-    it('SpiderService input bookname should return book list', function(done) {
+    it('SpiderService input bookNumber should return book list', function(done) {
         k.runCommand('spider', {
             type: 'getBookList',
             playload: {
-                bookName: '大道朝天'
+                bookNumber: '/d/169/169208/'
             },
         }).then( data => {
             chai.expect((<any>data).bookList).to.an.instanceof(Array);
@@ -68,11 +68,11 @@ describe('ixSpider input bookname should renturn book number', function() {
         })
     });
 
-    it('ixSpider input bookname should return book 某一章节', function(done) {
+    it('ixSpider input bookNumber should return book 某一章节', function(done) {
         k.runCommand('spider', {
             type: 'getBookData',
             playload: {
-                bookName: '大道朝天',
+                bookNumber: '/d/169/169208/',
                 bookHref: 'p2.html',
             },
         }).then(data => {
