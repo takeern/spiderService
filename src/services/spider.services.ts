@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 import IxSpider from '../../../spider/src/component/ixSpider';
 import { IsearchConfig } from '../interface/ISearchConfig.interface';
 
+const Rx = require('rxjs/Rx');
+
 interface ISearchNumber {
     bookNumber: string;
 }
@@ -13,9 +15,15 @@ interface IBookData {
     bookNumber: string;
     bookData: string;
 }
+interface IRes{
+    type: string;
+    data: any;
+}
 @Injectable()
 export class SpiderService {
     public spider: any;
+    public liveState: Array<any>;
+    private package: Array<IRes>;
     constructor() {
         this.spider = new IxSpider();
     }
@@ -37,7 +45,30 @@ export class SpiderService {
         return bookData;
     }
     async getBookAllData(config: IsearchConfig) {
-        const allBookData = await this.spider.getBookAllData(config);
-        return allBookData;
+        // const allBookData = this.spider.getBookAllData(config);
+        // console.log(allBookData);
+        const k = this.spider.getBookAllData(config, config.bookList);
+        return k;
+        this.package = [];
+        // return Rx.Observable.create(async (observer: any) => {
+        //     k.subscribe({
+        //         next: (res: IRes) => {
+        //             const { type } = res;
+        //             switch(type) {
+        //                 case('bookData'): 
+        //                     this.package.push(res);
+        //                 break;
+        //                 case('bookState'):
+        //                     this.liveState = res.data;
+        //                 break;
+        //                 default:
+        //                 break;
+        //             }
+        //         }
+        //     })
+        // })
+    }
+    handlePullBook(command: any) {
+
     }
 }
