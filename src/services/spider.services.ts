@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import IxSpider from '../../../spider/src/component/ixSpider';
+import IxSpider from '../../ixSpider/src/component/ixSpider';
 import { IsearchConfig } from '../interface/ISearchConfig.interface';
 
 const Rx = require('rxjs/Rx');

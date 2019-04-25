@@ -1,0 +1,3 @@
+[submodule "ixSpider"]
+	path = ixSpider
+	url = https://github.com/takeern/ixSpider.git
