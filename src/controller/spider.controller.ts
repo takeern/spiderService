@@ -13,19 +13,19 @@ export class SpiderController {
         switch (data.type) {
             case ('getBookNumber'): {
                 // console.log()
-                const searchData = this.spiderService.searchBook(data.playload);
+                const searchData = await this.spiderService.searchBook(data.playload);
                 return searchData;
             }
             case ('getBookList'): {
-                const bookList = this.spiderService.getBookList(data.playload);
+                const bookList = await this.spiderService.getBookList(data.playload);
                 return bookList;
             }
             case ('getBookData'): {
-                const bookData = this.spiderService.getBookData(data.playload);
+                const bookData = await this.spiderService.getBookData(data.playload);
                 return bookData;
             }
             case ('getBookAllData'): {
-                const allData = this.spiderService.getBookAllData(data.playload);
+                const allData = await this.spiderService.getBookAllData(data.playload);
                 return allData;
             }
             default: throw new Error('undefiende action');
