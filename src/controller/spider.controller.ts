@@ -12,16 +12,21 @@ export class SpiderController {
         console.log('SPIDER CONTROLLER');
         switch (data.type) {
             case ('getBookNumber'): {
-                return this.spiderService.searchBook(data.playload);
+                // console.log()
+                const searchData = this.spiderService.searchBook(data.playload);
+                return searchData;
             }
             case ('getBookList'): {
-                return this.spiderService.getBookList(data.playload);
+                const bookList = this.spiderService.getBookList(data.playload);
+                return bookList;
             }
             case ('getBookData'): {
-                return this.spiderService.getBookData(data.playload);
+                const bookData = this.spiderService.getBookData(data.playload);
+                return bookData;
             }
             case ('getBookAllData'): {
-                return this.spiderService.getBookAllData(data.playload);
+                const allData = this.spiderService.getBookAllData(data.playload);
+                return allData;
             }
             default: throw new Error('undefiende action');
         }
