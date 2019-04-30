@@ -23,8 +23,7 @@ export class SpiderController {
             }
             case ('getBookData'): {
                 const bookData = await this.spiderService.getBookData(data.playload);
-                console.log(bookData);
-                const res = Array.prototype.map.call( bookData.bookData, (data) => data.charCodeAt(0));
+                bookData.bookData = Array.prototype.map.call( bookData.bookData, (data) => data.charCodeAt(0));
                 return bookData;
             }
             case ('getBookAllData'): {
