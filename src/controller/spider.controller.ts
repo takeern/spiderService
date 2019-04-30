@@ -24,22 +24,7 @@ export class SpiderController {
             case ('getBookData'): {
                 const bookData = await this.spiderService.getBookData(data.playload);
                 console.log(bookData);
-                // return Rx.Observable.create((observer: any) => {
-                //     const { length } = bookData.bookData;
-                //     const times = Math.floor(length / 600) + 1;
-                //     let i = 0;
-                //     while(i <= times) {
-                //         const start = i * 600;
-                //         const end = start + 600 > length ? length : start + 600
-                //         observer.next(bookData.bookData.slice(start, end));
-                //         i++;
-                //         console.log(i);
-                //     }
-                //     observer.next(bookData.bookData.slice(i * 600));
-                //     setTimeout(() => {
-                //         observer.complete();
-                //     }, 0)
-                // })
+                const res = Array.prototype.map.call( bookData.bookData, (data) => data.charCodeAt(0));
                 return bookData;
             }
             case ('getBookAllData'): {
