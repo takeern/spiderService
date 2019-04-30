@@ -5,7 +5,11 @@ import { SpiderModule } from './module/spider.module';
 async function bootstrap() {
     const app = await NestFactory.createMicroservice(SpiderModule, {
         transport: Transport.TCP,
+        options: {
+            port: 8083,
+            host: '0.0.0.0'
+        },
     });
-    app.listen(8083, '0.0.0.0');
+    app.listen(() => console.log('spiderService is listening'));
 }
 bootstrap();

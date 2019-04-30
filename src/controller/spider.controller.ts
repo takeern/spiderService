@@ -30,7 +30,7 @@ export class SpiderController {
                     while(i < time) {
                         const start = i * 600;
                         const end = start + 600 > length ? length : start + 600
-                        observer.next(bookData.bookData.slice(start, end);
+                        observer.next(bookData.bookData.slice(start, end));
                     }
                     observer.complete();
                 })
