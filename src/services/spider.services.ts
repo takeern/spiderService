@@ -41,7 +41,7 @@ export class SpiderService {
         return bookList;
     }
     async getBookData(config: IsearchConfig): Promise<IBookData> {
-        const bookData = await this.spider.getBookData(config);
+        const bookData = this.spider.getBookData(config);
         return bookData;
     }
     async getBookAllData(config: IsearchConfig) {
