@@ -2,6 +2,7 @@ import { Controller, Get } from '@nestjs/common';
 import { SpiderService } from '../services/spider.services';
 import { MessagePattern } from '@nestjs/microservices';
 import { IspiderAction } from '../interface/ISearchConfig.interface'; 
+const Rx = require('rxjs/Rx');
 
 @Controller()
 export class SpiderController {
@@ -22,6 +23,17 @@ export class SpiderController {
             }
             case ('getBookData'): {
                 const bookData = await this.spiderService.getBookData(data.playload);
+                Rx.Observable.create((observer: any) => {
+                    const { length } = bookData.bookData;
+                    const time = Math.floor(length / 600) + 1;
+                    let i = 0;
+                    while(i < time) {
+                        const start = i * 600;
+                        const end = start + 600 > length ? length : start + 600
+                        observer.next(bookData.bookData.slice(start, end);
+                    }
+                    observer.complete();
+                })
                 return bookData;
             }
             case ('getBookAllData'): {
