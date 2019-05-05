@@ -14,13 +14,14 @@ export class SpiderController {
         switch (data.type) {
             case ('getBookNumber'): {
                 // console.log()
-                const searchData = await JSON.stringify(this.spiderService.searchBook(data.playload));
-                const resData =  Array.prototype.map.call(searchData, (data) => data.charCodeAt(0));
+                const searchData = await this.spiderService.searchBook(data.playload);
+
+                const resData =  Array.prototype.map.call(JSON.stringify(searchData), (data) => data.charCodeAt(0));
                 return resData;
             }
             case ('getBookList'): {
-                const bookList = await JSON.stringify(this.spiderService.getBookList(data.playload));
-                const resData =  Array.prototype.map.call(bookList, (data) => data.charCodeAt(0));
+                const bookList = await this.spiderService.getBookList(data.playload);
+                const resData =  Array.prototype.map.call(JSON.stringify(bookList), (data) => data.charCodeAt(0));
                 return resData;
             }
             case ('getBookData'): {
